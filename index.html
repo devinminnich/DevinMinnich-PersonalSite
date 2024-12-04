@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6KT073TVZB"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6KT073TVZB');
-    </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6KT073TVZB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6KT073TVZB');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Site</title>
@@ -79,16 +81,31 @@
           <div id="Contact"><p>Do you have any questions or would like to work together?</p></div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email address:</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            <input type="email" class="form-control" id="useremailaddress" placeholder="name@example.com">
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Company Name:</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="eg: Apple">
+            <label for="exampleFormControlInput1" class="form-label">Name:</label>
+            <input type="email" class="form-control" id="username" placeholder="Devin">
           </div>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Leave a Message:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="usermessagearea" rows="3"></textarea>
           </div>
+          <button type="button" class="btn btn-primary btn-sm" onclick="sendEmail()">Send</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="clearEmail()">Clear</button>
+          <script>
+            function sendEmail() {
+              let useremailaddress = document.querySelector("#useremailaddress");
+              let username = document.querySelector("#username");
+              let usermessagearea = document.querySelector("#usermessagearea");
+              alert("Thank you for your message!");
+            }
+            function clearEmail() {
+              document.querySelector("#user_emailaddress") = "";
+              document.querySelector("#user_name") = "";
+              document.querySelector("#user_messagearea") = "";
+            }
+          </script>
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
               <div class="col-md-4 d-flex align-items-center">
