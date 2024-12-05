@@ -17,9 +17,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="themetoggle">
+    <label class="form-check-label" for="flexSwitchCheckDefault"><i>Toggle Dark/Light mode</i></label>
+    <script>
+        document.getElementById('themetoggle').addEventListener('change', function () {
+          if (this.checked) {
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            } else {
+              document.documentElement.setAttribute('data-bs-theme', 'dark');
+              }
+            });
+    </script>
+  </div>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-          <img src="./Parrots/ceiling_parrot.gif" height="40x">
+          <img src="./Parrots/ceiling_parrot.gif" height="40x" id="mascot">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
           </a>
           <ul class="nav nav-pills">
@@ -29,6 +42,7 @@
             <li class="nav-item"><a href="#Contact" class="nav-link">Contact</a></li>
           </ul>
         </header>
+      </div>
         <div class="my-5">
             <div class="p-5 text-center bg-body-tertiary">
               <div class="container py-5">
@@ -93,17 +107,39 @@
           </div>
           <button type="button" class="btn btn-primary btn-sm" onclick="sendEmail()">Send</button>
           <button type="button" class="btn btn-secondary btn-sm" onclick="clearEmail()">Clear</button>
-          <script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+          <script type="text/javascript">
             function sendEmail() {
-              let useremailaddress = document.querySelector("#useremailaddress");
-              let username = document.querySelector("#username");
-              let usermessagearea = document.querySelector("#usermessagearea");
-              alert("Thank you for your message!");
+              emailjs.init("OZ8x2ZXC7JCyxbbML");
+              const serviceID = "service_bqo1lf9";
+              const templateID = "template_um6n2h7";
+              const useremailaddress = document.querySelector("#useremailaddress").value;
+              const username = document.querySelector("#username").value;
+              const usermessagearea = document.querySelector("#usermessagearea").value;
+              if (!useremailaddress || !username || !usermessagearea) {
+                alert("Please fill out all fields.");
+                return;
+              }
+              const templateParams = {
+                user_email: useremailaddress,
+                user_name: username,
+                message: usermessagearea,
+              };
+              emailjs
+                .send(serviceID, templateID, templateParams)
+                .then((response) => {
+                  alert("Email sent successfully!");
+                  console.log("SUCCESS!", response.status, response.text);
+                })
+                .catch((error) => {
+                  alert("Failed to send email. Please try again later.");
+                  console.log("FAILED...", error);
+                });
             }
             function clearEmail() {
-              document.querySelector("#user_emailaddress") = "";
-              document.querySelector("#user_name") = "";
-              document.querySelector("#user_messagearea") = "";
+              document.querySelector("#useremailaddress").value = "";
+              document.querySelector("#username").value = "";
+              document.querySelector("#usermessagearea").value = "";
             }
           </script>
         <div class="container">
