@@ -113,9 +113,11 @@
             <label for="exampleFormControlTextarea1" class="form-label">Leave a Message:</label>
             <textarea class="form-control" id="usermessagearea" rows="3"></textarea>
           </div>
-          <button type="button" class="btn btn-primary btn-sm" onclick="sendEmail()">Send</button>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="clearEmail()">Clear</button>
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <div class="container">
+            <button type="button" class="btn btn-primary btn-sm" onclick="sendEmail()">Send</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="clearEmail()">Clear</button>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        </div>
           <script type="text/javascript">
             function sendEmail() {
               emailjs.init("OZ8x2ZXC7JCyxbbML");
